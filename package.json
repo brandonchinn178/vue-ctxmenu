@@ -4,6 +4,9 @@
     "author": "Brandon Chinn (http://github.com/brandonchinn178)",
     "description": "Vue Context Menus as a custom block",
     "main": "./lib/index.js",
+    "scripts": {
+        "build": "webpack"
+    },
     "repository": "brandonchinn178/vue-ctxmenu",
     "homepage": "http://github.com/brandonchinn178/vue-ctxmenu",
     "bugs": "http://github.com/brandonchinn178/vue-ctxmenu/issues",
@@ -17,8 +20,16 @@
     ],
     "license": "ISC",
     "dependencies": {
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "css-loader": "^0.28.7",
+        "lodash": "^4.17.4",
         "vue": "^2.4.2",
         "vue-loader": "^13.0.4",
-        "vue-on-click-outside": "^1.0.3"
+        "vue-on-click-outside": "^1.0.3",
+        "vue-template-compiler": "^2.4.2"
+    },
+    "devDependencies": {
+        "webpack": "^3.8.1"
     }
 }

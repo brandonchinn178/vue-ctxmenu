@@ -1,5 +1,5 @@
 <template>
-    <p @contextmenu.prevent="this.contextMenu.open($event)">Right click here</p>
+    <p @contextmenu.prevent="contextMenu.open($event)">Right click here</p>
 </template>
 
 <context-menu>
@@ -9,8 +9,10 @@
 
 <script>
 export default {
-    data: {
-      foo: true,
+    data() {
+        return {
+            foo: true,
+        };
     },
     methods: {
         doFoo: function() {

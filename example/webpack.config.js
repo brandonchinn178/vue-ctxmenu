@@ -1,7 +1,9 @@
+var path = require('path');
+
 module.exports = {
-    entry: 'src/index.js',
+    entry: 'index.js',
     output: {
-        path: './dist',
+        path: path.resolve('dist'),
         filename: 'app.js',
     },
     resolve: {
@@ -10,8 +12,8 @@ module.exports = {
             'vue': 'vue/dist/vue.esm.js',
         },
         modules: [
-            src,
-            path.resolve(__dirname, 'node_modules'),
+            path.resolve('src'),
+            path.resolve('node_modules'),
         ],
     },
     module: {
@@ -22,7 +24,7 @@ module.exports = {
                     loader: 'vue-loader',
                     options: {
                         loaders: {
-                            'context-menu': require('vue-ctxmenu/loader'),
+                            'context-menu': require.resolve('vue-ctxmenu/loader'),
                         },
                     },
                 },
