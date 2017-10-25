@@ -2,7 +2,7 @@
     <ul
         v-show="!cmHide"
         v-on-click-outside="hide"
-        class="vue-context-menu"
+        :class="classes"
         :style="position"
     >
         <slot></slot>
@@ -14,6 +14,20 @@ import _ from 'lodash';
 
 export default {
     _isContextMenu: true,
+    _bootstrap: false,
+    /**
+     * Available options:
+     *   - {boolean} bootstrap - true to add basic styling
+     */
+    withOptions(options) {
+        options = _.defaults(options, {
+            bootstrap: false,
+        });
+
+        this._bootstrap = options.bootstrap;
+
+        return this;
+    },
     updated() {
         if (!this.initClick) {
             // Whenever <li> is clicked, hide context menu
@@ -54,15 +68,42 @@ export default {
             this.cmHide = true;
         },
     },
+    computed: {
+        classes() {
+            return {
+                "vue-context-menu": true,
+                "vue-context-menu-bootstrap": this.$options._bootstrap,
+            };
+        },
+    },
 };
 </script>
 
-<style>
+<style lang="scss">
     .vue-context-menu {
         position: absolute;
         z-index: 10000;
-        margin: 0;
-        padding: 0;
-        background: white;
+        list-style: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 0;
+    }
+
+    $border-style: 1px solid #aaa;
+    $background: #f6f6f6;
+    .vue-context-menu-bootstrap {
+        border: $border-style;
+        background: $background;
+        li {
+            padding: 5px 10px;
+            border-bottom: $border-style;
+            cursor: pointer;
+            &:hover {
+                background: lighten($background, 1);
+            }
+            &:last-child {
+                border-bottom: none;
+            }
+        }
     }
 </style>

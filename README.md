@@ -31,3 +31,10 @@ Basically, you need to run the following steps:
 2. Add `"context-menu": require.resolve('vue-ctxmenu/loader')` to your webpack config
 3. Style the `.vue-context-menu` class
 4. Add a `<context-menu>` block in any `.vue` file
+
+## Options
+
+You can specify options for the context menu by doing `Vue.use(VueContextMenu, options)`.
+The available options are:
+
+- `bootstrap` (`boolean`): Set to `true` to add basic styling to the context menu

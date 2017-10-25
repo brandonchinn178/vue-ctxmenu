@@ -28,8 +28,11 @@ export default {
 <style lang="scss">
     .vue-context-menu {
         list-style: none;
+        background: #fff;
+        border: 1px solid #aaa;
         li {
             cursor: pointer;
+            padding: 5px 15px;
         }
     }
 </style>
