@@ -1,6 +1,6 @@
 <template>
     <ul
-        v-if="!cmHide"
+        v-show="!cmHide"
         v-on-click-outside="hide"
         class="vue-context-menu"
         :style="position"
@@ -42,10 +42,11 @@ export default {
     methods: {
         open(e) {
             this.cmHide = false;
+
             // left/top relative to parent
-            let offset = $(this.$parent.$el).offset();
-            this.position.left = e.pageX - offset.left;
-            this.position.top = e.pageY - offset.top;
+            let box = this.$parent.$el.getBoundingClientRect();
+            this.position.left = e.clientX - box.left;
+            this.position.top = e.clientY - box.top;
 
             // TODO: smart position
         },
@@ -60,5 +61,8 @@ export default {
     .vue-context-menu {
         position: absolute;
         z-index: 10000;
+        margin: 0;
+        padding: 0;
+        background: white;
     }
 </style>
