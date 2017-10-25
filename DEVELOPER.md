@@ -11,8 +11,5 @@ npm run build
 ## Deploy to npm
 
 ```
-npm version {major,minor,patch}
-npm publish
-git push
-git push --tags
+scripts/deploy.sh {major|minor|patch}
 ```
