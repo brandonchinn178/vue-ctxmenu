@@ -1,6 +1,6 @@
 {
     "name": "vue-ctxmenu",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": "Brandon Chinn (http://github.com/brandonchinn178)",
     "description": "Vue Context Menus as a custom block",
     "main": "./lib/index.js",
