@@ -38,3 +38,8 @@ You can specify options for the context menu by doing `Vue.use(VueContextMenu, o
 The available options are:
 
 - `bootstrap` (`boolean`): Set to `true` to add basic styling to the context menu
+
+## Events
+
+The following events can be caught with `this.contextMenu.$on()`:
+- `hide`: Emitted when the context menu is hidden

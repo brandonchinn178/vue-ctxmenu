@@ -31,7 +31,7 @@ export default {
     updated() {
         if (!this.initClick) {
             // Whenever <li> is clicked, hide context menu
-            let menuItems = _.filter(this.$slots.default, ["tag", "li"]);
+            let menuItems = _.filter(this.$slots.default, ['tag', 'li']);
             _.each(menuItems, node => {
                 let callbacks = node.data.on.click.fns;
                 if (!_.isArray(callbacks)) {
@@ -66,13 +66,14 @@ export default {
         },
         hide() {
             this.cmHide = true;
+            this.$emit('hide');
         },
     },
     computed: {
         classes() {
             return {
-                "vue-context-menu": true,
-                "vue-context-menu-bootstrap": this.$options._bootstrap,
+                'vue-context-menu': true,
+                'vue-context-menu-bootstrap': this.$options._bootstrap,
             };
         },
     },

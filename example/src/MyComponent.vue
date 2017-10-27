@@ -14,12 +14,17 @@ export default {
             foo: true,
         };
     },
+    mounted() {
+        this.contextMenu.$on('hide', () => {
+            console.log('hidden');
+        });
+    },
     methods: {
         doFoo: function() {
-            console.log("foo");
+            console.log('foo');
         },
         doBar: function() {
-            console.log("bar");
+            console.log('bar');
         },
     },
 }
