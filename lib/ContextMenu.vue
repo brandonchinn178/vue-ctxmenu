@@ -31,23 +31,25 @@ export default {
         document.body.appendChild(this.$el);
     },
     updated() {
-        if (!this.initClick) {
-            // Whenever <li> is clicked, hide context menu
-            let menuItems = _.filter(this.$slots.default, ['tag', 'li']);
-            _.each(menuItems, node => {
-                let callbacks = node.data.on.click.fns;
-                if (!_.isArray(callbacks)) {
-                    callbacks = [callbacks];
-                    node.data.on.click.fns = callbacks;
-                }
-                callbacks.push($event => this.hide());
-            });
-            this.initClick = true;
-        }
+        // Whenever <li> is clicked, hide context menu
+        let menuItems = _.filter(this.$slots.default, ['tag', 'li']);
+        _.each(menuItems, node => {
+            let callbacks = node.data.on.click.fns;
+            if (!_.isArray(callbacks)) {
+                callbacks = [callbacks];
+                node.data.on.click.fns = callbacks;
+            }
+
+            // only add callback if doesn't already exist
+            if (!_.some(callbacks, 'vueCtxMenuHide')) {
+                let callback = $event => this.hide();
+                callback.vueCtxMenuHide = true;
+                callbacks.push(callback);
+            }
+        });
     },
     data() {
         return {
-            initClick: false,
             cmHide: true,
             position: {
                 left: null,
