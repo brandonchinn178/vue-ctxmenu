@@ -5,11 +5,7 @@ import MyComponent from './MyComponent.vue';
 
 Vue.use(VueContextMenu);
 
-// let App = Vue.extend(MyComponent);
-let App = Vue.extend({
-    components: {MyComponent},
-    template: '<div><my-component/><my-component/></div>'
-});
+let App = Vue.extend(MyComponent);
 new App({
     el: '#app',
 });
