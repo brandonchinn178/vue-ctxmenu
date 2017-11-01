@@ -28,7 +28,6 @@
         "sass-loader": "^6.0.6",
         "vue": "^2.4.2",
         "vue-loader": "^13.0.4",
-        "vue-on-click-outside": "^1.0.3",
         "vue-template-compiler": "^2.4.2"
     },
     "devDependencies": {

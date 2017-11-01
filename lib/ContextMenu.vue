@@ -1,7 +1,6 @@
 <template>
     <ul
         v-show="!cmHide"
-        v-on-click-outside="hide"
         :class="classes"
         :style="position"
     >
@@ -28,6 +27,9 @@ export default {
 
         return this;
     },
+    mounted() {
+        document.body.appendChild(this.$el);
+    },
     updated() {
         if (!this.initClick) {
             // Whenever <li> is clicked, hide context menu
@@ -51,21 +53,37 @@ export default {
                 left: null,
                 top: null,
             },
+            listener: null,
         };
     },
     methods: {
         open(e) {
+            // click off of any existing context menus
+            if (this.cmHide) {
+                document.documentElement.click();
+            }
+
             this.cmHide = false;
+            this.position.left = e.pageX;
+            this.position.top = e.pageY;
 
-            // left/top relative to parent
-            let box = this.$parent.$el.getBoundingClientRect();
-            this.position.left = e.clientX - box.left;
-            this.position.top = e.clientY - box.top;
-
-            // TODO: smart position
+            // register click off
+            if (_.isNull(this.listener)) {
+                this.listener = e => {
+                    if (!this.$el.contains(e.target)) {
+                        this.hide();
+                    }
+                };
+                document.documentElement.addEventListener('click', this.listener, false);
+            }
         },
         hide() {
             this.cmHide = true;
+
+            // unregister click off
+            document.documentElement.removeEventListener('click', this.listener, false);
+            this.listener = null;
+
             this.$emit('hide');
         },
     },
